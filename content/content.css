@@ -1,0 +1,89 @@
+mark.web-highlighter {
+  display: inline !important;
+  border-radius: 2px !important;
+  padding: 0 1px !important;
+  margin: 0 !important;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  color: inherit !important;
+  background-color: var(--wh-bg) !important;
+  border: none !important;
+  text-decoration: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+
+mark.web-highlighter:hover {
+  opacity: 0.7;
+}
+
+.web-highlighter-toolbar {
+  position: fixed;
+  z-index: 2147483647;
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  animation: wh-fade-in 0.12s ease-out;
+}
+
+.web-highlighter-toolbar button {
+  width: 24px;
+  height: 24px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.web-highlighter-toolbar button:hover {
+  transform: scale(1.2);
+  border-color: #fff;
+}
+
+.web-highlighter-toolbar .wh-remove-btn {
+  background: #1a1a2e;
+  border: 2px solid #666;
+  color: #ccc;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.web-highlighter-toolbar .wh-remove-btn:hover {
+  border-color: #f44;
+  color: #f44;
+}
+
+@media (prefers-color-scheme: light) {
+  .web-highlighter-toolbar {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .web-highlighter-toolbar button:hover {
+    border-color: #333;
+  }
+
+  .web-highlighter-toolbar .wh-remove-btn {
+    background: #fff;
+    border-color: #ccc;
+    color: #666;
+  }
+
+  .web-highlighter-toolbar .wh-remove-btn:hover {
+    border-color: #e33;
+    color: #e33;
+  }
+}
+
+@keyframes wh-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

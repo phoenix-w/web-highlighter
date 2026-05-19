@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 320px;
+  max-height: 480px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: #e0e0e0;
+  background: #1a1a2e;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #2a2a40;
+}
+
+.header h1 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.badge {
+  background: #3a3a5c;
+  color: #bbb;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.settings-icon {
+  margin-left: auto;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.1s;
+}
+
+.settings-icon:hover {
+  color: #ccc;
+}
+
+.empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: #666;
+}
+
+ul {
+  list-style: none;
+  padding: 4px 0;
+}
+
+li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #2a2a40;
+  transition: background 0.1s;
+}
+
+li:hover {
+  background: #2a2a40;
+}
+
+.color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.highlight-text {
+  flex: 1;
+  line-height: 1.4;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 2px;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.remove-btn:hover {
+  color: #f44;
+}
+
+.footer {
+  padding: 8px 16px 12px;
+  border-top: 1px solid #2a2a40;
+  text-align: right;
+}
+
+.clear-btn {
+  background: none;
+  border: 1px solid #444;
+  color: #999;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.1s;
+}
+
+.clear-btn:hover {
+  border-color: #f44;
+  color: #f44;
+}
+
+.hidden {
+  display: none;
+}
