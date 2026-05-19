@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="options.css" />
+  <link id="favicon" rel="icon" type="image/png" href="../icons/options/yellow_128.png" />
 </head>
 <body>
   <div class="layout">
@@ -27,6 +28,27 @@
     <main class="content">
       <!-- Settings Tab -->
       <div id="tab-settings" class="tab-panel active">
+
+        <!-- General -->
+        <section>
+          <div class="section-header" style="margin-bottom: 20px;">
+            <h2>General</h2>
+          </div>
+          <div class="setting-row">
+            <span class="setting-label">Extension Icon</span>
+            <div id="icon-picker" class="icon-picker"></div>
+          </div>
+          <div class="setting-row" style="margin-top: 16px;">
+            <span class="setting-label">Settings Data</span>
+            <div class="button-group">
+              <button id="export-settings-btn" class="btn btn-small">Export Settings</button>
+              <button id="import-settings-btn" class="btn btn-small">Import Settings</button>
+            </div>
+            <input type="file" id="import-settings-file" accept=".json" hidden />
+          </div>
+        </section>
+
+        <!-- Highlighter Colors -->
         <section>
           <div class="section-header" style="margin-bottom: 20px;">
             <h2>Highlighter Colors</h2>
@@ -48,6 +70,12 @@
               </div>
             </label>
           </div>
+          <div class="color-columns-header">
+            <span class="col-header col-colors">Colors</span>
+            <span class="col-header col-light">Light Mode</span>
+            <span class="col-header col-dark">Dark Mode</span>
+            <span class="col-header col-shortcut">Shortcut</span>
+          </div>
           <div id="color-rows"></div>
         </section>
       </div>
@@ -60,6 +88,7 @@
             <button id="clear-all-btn" class="btn btn-small btn-danger">Clear All</button>
           </div>
           <div id="highlights-stats" class="highlights-stats"></div>
+          <input type="text" id="highlights-search" class="search-input" placeholder="Search highlights..." />
           <div id="highlights-list"></div>
           <div id="highlights-empty" class="highlights-empty hidden">No highlights saved yet.</div>
         </section>
