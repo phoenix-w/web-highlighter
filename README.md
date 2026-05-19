@@ -1,4 +1,4 @@
-# [Chrome Extension] Web Highlighter
+# [Extension] Web Highlighter
 
 ## Features
 - Select text to highlight in different colors
