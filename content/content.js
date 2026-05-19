@@ -18,6 +18,7 @@
       3: "Alt+4", 4: "Alt+5", 5: "Alt+6",
     },
     textColors: {},
+    showNotes: true,
   };
 
   let settings = { ...DEFAULTS };
@@ -252,7 +253,7 @@
     toolbar.appendChild(colorsRow);
 
     // Note input for existing highlights
-    if (existingMark) {
+    if (existingMark && settings.showNotes !== false) {
       const noteRow = document.createElement("div");
       noteRow.className = "wh-toolbar-note";
       const noteInput = document.createElement("input");

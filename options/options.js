@@ -19,6 +19,8 @@ const DEFAULTS = {
   },
   textColors: {},
   iconColor: "yellow",
+  showToolbar: true,
+  showNotes: true,
 };
 
 let settings = { ...DEFAULTS };
@@ -653,11 +655,28 @@ document.getElementById("clear-all-btn").addEventListener("click", () => {
 
 // --- Init ---
 
+function bindToggles() {
+  const toolbarToggle = document.getElementById("toggle-toolbar");
+  toolbarToggle.checked = settings.showToolbar !== false;
+  toolbarToggle.addEventListener("change", () => {
+    settings.showToolbar = toolbarToggle.checked;
+    save();
+  });
+
+  const notesToggle = document.getElementById("toggle-notes");
+  notesToggle.checked = settings.showNotes !== false;
+  notesToggle.addEventListener("change", () => {
+    settings.showNotes = notesToggle.checked;
+    save();
+  });
+}
+
 load(() => {
   applyTheme();
   renderIconPicker();
   applyIcon(settings.iconColor);
   renderColorRows();
   bindStyleControls();
+  bindToggles();
   document.getElementById("highlights-search").addEventListener("input", () => { renderHighlights(false); });
 });
