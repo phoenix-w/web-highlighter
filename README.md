@@ -1,7 +1,7 @@
 # [Chrome Extension] Web Highlighter
 
 ## Features
-- Select text and press Option + 1-6 to highlight in different colors
+- Select text to highlight in different colors
 - Six default colors: red, orange, yellow, green, blue, and purple
 - Highlights persist across browser sessions
 - Click any highlight to change its color or remove it
