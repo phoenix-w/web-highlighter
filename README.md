@@ -1,5 +1,4 @@
 # [Chrome Extension] Web Highlighter
-Highlight text on any web page. Highlights persist when you revisit.
 
 ## Features
 - Select text and press Option + 1-6 to highlight in different colors
