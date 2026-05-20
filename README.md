@@ -3,6 +3,15 @@
 ## How It Works
 Select any text on a page and press Option + 1 through Option + 6 to highlight it in one of six colors: red, orange, yellow, green, blue, or purple. That's it.
 
+## Installation
+1. Download this repo
+2. Open your browser and go to:
+   - Chrome: `chrome://extensions`
+   - Edge: `edge://extensions`
+3. Turn on **Developer Mode**
+4. Click **Load Unpacked** and select the downloaded folder
+5. You're ready to go
+
 ## Features
 - Highlight with keyboard shortcuts - no menus, no extra clicks
 - Six default colors, fully customizable
