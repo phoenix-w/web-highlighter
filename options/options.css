@@ -169,10 +169,13 @@ body {
 
 .theme-btn:hover { border-color: var(--thumb); color: var(--heading); }
 
-.theme-icon-light { display: none; }
-.theme-icon-dark  { display: inline; }
-body.light .theme-icon-light { display: inline; }
-body.light .theme-icon-dark  { display: none; }
+.theme-icon-system { display: inline; }
+.theme-icon-light  { display: none; }
+.theme-icon-dark   { display: none; }
+body[data-theme="light"] .theme-icon-system { display: none; }
+body[data-theme="light"] .theme-icon-light  { display: inline; }
+body[data-theme="dark"] .theme-icon-system  { display: none; }
+body[data-theme="dark"] .theme-icon-dark    { display: inline; }
 
 .content {
   flex: 1;

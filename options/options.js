@@ -92,15 +92,18 @@ function load(callback) {
 function applyTheme() {
   const theme = settings.theme || "system";
   document.body.classList.remove("light", "dark");
+  document.body.dataset.theme = theme;
   if (theme === "light") document.body.classList.add("light");
   else if (theme === "dark") document.body.classList.add("dark");
+  const titles = { system: "Theme: System", light: "Theme: Light", dark: "Theme: Dark" };
+  document.getElementById("theme-toggle").title = titles[theme];
 }
 
 document.getElementById("theme-toggle").addEventListener("click", () => {
   const current = settings.theme || "system";
-  const isSystemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-  const effectiveDark = current === "dark" || (current === "system" && !isSystemLight);
-  settings.theme = effectiveDark ? "light" : "dark";
+  if (current === "system") settings.theme = "light";
+  else if (current === "light") settings.theme = "dark";
+  else settings.theme = "system";
   applyTheme();
   save();
 });
