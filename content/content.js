@@ -337,7 +337,7 @@
     applyHighlight(range, bg, id, textColor);
     selection.removeAllRanges();
 
-    const entry = { id, text, color: bg, textColor, range: serialized, createdAt: Date.now() };
+    const entry = { id, text, color: bg, textColor, range: serialized, createdAt: Date.now(), title: document.title };
     withPageHighlights((highlights) => { highlights.push(entry); return highlights; });
   }
 
@@ -345,10 +345,31 @@
 
   function restoreHighlights() {
     chrome.storage.local.get(pageKey(), (result) => {
-      (result[pageKey()] || []).forEach((h) => {
-        const range = deserializeRange(h.range);
-        if (range) applyHighlight(range, h.color, h.id, h.textColor);
+      const highlights = result[pageKey()] || [];
+      if (highlights.length === 0) return;
+
+      const pending = new Set(highlights.map((h) => h.id));
+
+      function tryRestore() {
+        for (const h of highlights) {
+          if (!pending.has(h.id)) continue;
+          const range = deserializeRange(h.range);
+          if (range) {
+            applyHighlight(range, h.color, h.id, h.textColor);
+            pending.delete(h.id);
+          }
+        }
+        scrollToHighlight();
+        return pending.size === 0;
+      }
+
+      if (tryRestore()) return;
+
+      const observer = new MutationObserver(() => {
+        if (tryRestore()) observer.disconnect();
       });
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(() => observer.disconnect(), 10000);
     });
   }
 
@@ -446,6 +467,5 @@
 
   loadSettings(() => {
     restoreHighlights();
-    setTimeout(scrollToHighlight, 300);
   });
 })();

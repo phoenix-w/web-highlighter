@@ -480,14 +480,18 @@ importSettingsFile.addEventListener("change", (e) => {
 
 // --- Tab navigation ---
 
+function switchTab(tabName) {
+  document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+  const navItem = document.querySelector('.nav-item[data-tab="' + tabName + '"]');
+  if (navItem) navItem.classList.add("active");
+  document.getElementById("tab-" + tabName).classList.add("active");
+  if (tabName === "highlights") renderHighlights();
+  location.hash = tabName;
+}
+
 document.querySelectorAll(".nav-item").forEach((item) => {
-  item.addEventListener("click", () => {
-    document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
-    document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
-    item.classList.add("active");
-    document.getElementById("tab-" + item.dataset.tab).classList.add("active");
-    if (item.dataset.tab === "highlights") renderHighlights();
-  });
+  item.addEventListener("click", () => switchTab(item.dataset.tab));
 });
 
 // --- Highlights tab ---
@@ -557,8 +561,13 @@ function renderHighlights(forceReload) {
       header.className = "page-group-header";
       const link = document.createElement("a");
       link.href = url;
-      link.target = "_blank";
-      link.textContent = url;
+      const pageTitle = filtered.find((h) => h.title)?.title;
+      link.textContent = pageTitle || url;
+      if (pageTitle) link.title = url;
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        chrome.tabs.create({ url: url });
+      });
       header.appendChild(link);
 
       const removePageBtn = document.createElement("button");
@@ -591,8 +600,11 @@ function renderHighlights(forceReload) {
         const textLink = document.createElement("a");
         textLink.className = "highlight-text";
         textLink.href = url + "#wh-scroll=" + h.id;
-        textLink.target = "_blank";
         textLink.textContent = h.text;
+        textLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          chrome.tabs.create({ url: url + "#wh-scroll=" + h.id });
+        });
         textCol.appendChild(textLink);
 
         if (h.note) {
@@ -679,4 +691,6 @@ load(() => {
   bindStyleControls();
   bindToggles();
   document.getElementById("highlights-search").addEventListener("input", () => { renderHighlights(false); });
+  const hashTab = location.hash.slice(1);
+  if (hashTab && document.getElementById("tab-" + hashTab)) switchTab(hashTab);
 });
